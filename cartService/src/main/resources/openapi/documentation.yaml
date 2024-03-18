@@ -1,0 +1,91 @@
+openapi: "3.0.3"
+info:
+  title: "Cart API"
+  description: "Cart API"
+  version: "1.0.0"
+servers:
+  - url: "http://0.0.0.0:8080"
+paths:
+  /cart/{userId}/{cartItemId}:
+    put:
+      summary: Add item to cart
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: User ID
+          schema:
+            type: integer
+          example: 123
+        - name: cartItemId
+          in: path
+          required: true
+          description: Cart item ID
+          schema:
+            type: integer
+          example: 456
+      responses:
+        '202':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                type: integer
+    delete:
+      summary: Delete item from user's cart
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: User ID
+          schema:
+            type: integer
+          example: 123
+        - name: cartItemId
+          in: path
+          required: true
+          description: Cart item ID
+          schema:
+            type: integer
+          example: 456
+      responses:
+        '200':
+          description: OK
+
+  /cart/{userId}:
+    get:
+      summary: Get all items in user's cart
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: User ID
+          schema:
+            type: integer
+          example: 123
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: integer
+    delete:
+      summary: Clear user's cart
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: User ID
+          schema:
+            type: integer
+          example: 123
+      responses:
+        '200':
+          description: OK
+
+components:
+  schemas: { }
+
